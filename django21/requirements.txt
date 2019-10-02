@@ -1,0 +1,15 @@
+Django>=2.2,<3.0
+#Django==1.8
+#psycopg2
+gunicorn
+bootstrap-admin==0.3.7.1
+mysqlclient
+django-mysql
+#MySQL-pythonmysql-connector-python==8.0.16
+# mysql-connector-python-rf
+six==1.12.0
+django-cruds-adminlte
+django-crispy-forms
+easy-thumbnails
+django-image-cropping
+djangoajax
