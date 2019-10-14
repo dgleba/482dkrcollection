@@ -1,0 +1,62 @@
+version: "3.6"
+
+services:
+  adminer:
+    image: adminer:4.6
+    restart: always
+    ports:
+      - 6117:8080
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - 6412:80
+    depends_on:
+      - web
+    volumes:
+      - static_volume390f:/usr/src/app/static
+      - media_volume390f:/usr/src/app/media
+  web:
+    build: ./app
+    restart: always
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+      - static_volume390f:/usr/src/app/static
+      - media_volume390f:/usr/src/app/media
+    ports:
+      - 6413:8000
+    environment:
+      - DEBUG=0
+      - SECRET_KEY=DyNaUDiO58rfruhw#wf
+      - SQL_ENGINE=django.db.backends.mysql
+      - SQL_DATABASE=energy_data
+      - SQL_USER=stackpole_user
+      - SQL_PASSWORD=stackpole_pass
+      - SQL_HOST=db
+      - SQL_PORT=6414
+      - DATABASE=mysql
+    env_file:
+      - .env
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0.16
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      # - ~/stackpole-data:/var/lib/mysql
+      - ../datasys/scadaenergy390f-mysql:/var/lib/mysql
+      - .:/root # folder for scripts, etc.
+      - ../data/data390f-db/:/home # folder for exported data, etc.
+    ports:
+      - 6414:3306
+    environment:
+      - MYSQL_DATABASE=energy_data
+      - MYSQL_USER=stackpole_user
+      - MYSQL_PASSWORD=stackpole_pass
+      - MYSQL_ROOT_PASSWORD=stackpole_pass_root
+
+volumes:
+  static_volume390f:
+  media_volume390f:
