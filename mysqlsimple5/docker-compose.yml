@@ -18,8 +18,8 @@ services:
       - ../datasys/mysqlsimple5/:/var/lib/mysql/ # folder for mysql's internal data files.
       - .:/root # folder for scripts, etc.
       - ../data/datamysqlsimple5/:/home # folder for exported data, etc.
-    networks:
-      - sister2
+    # networks:
+    #   - sister2
     # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
     logging:
       driver: "json-file"
@@ -28,41 +28,40 @@ services:
         max-file: "2"
 
   adminer:
-    # 10.4.1.231:6117/
+    # 10.4.1.231:6117/  use db or 10.4.1.228:3308 for server while logging in.
     image: adminer:4.6
     restart: always
     ports:
       - 6117:8080
-    networks:
-      - sister2
-
+    # networks:
+    #   - sister2
 # https://docs.docker.com/compose/compose-file/#external-1
-networks:
-  sister2:
-    name:
-      sister2
-      #external:true
-      #I tried lining up external under name and got:
-      # albe@pmdsdata4:/srv/dkr/392dkr/backend392$ make myrup
-      # docker-compose  up --build  --force-recreate
-      # ERROR: yaml.scanner.ScannerError: while scanning a simple key
-      # in "./docker-compose.yml", line 33, column 5
-      # could not find expected ':'
-      # in "./docker-compose.yml", line 35, column 3
-      # make: *** [myrup] Error 1
-  # net2:
-  # external:
-  # name: netw2
-  # albe@pmdsdata4:/srv/dkr/392dkr/backend392$ make myrup
-  # docker-compose  up --build  --force-recreate
-  # WARNING: Some networks were defined but are not used by any service: net2
-  # ERROR: Service "dbm" uses an undefined network "netw2"
-  # make: *** [myrup] Error 1
-  # network:
-  # external: true
-  # name: mynet3
-  # albe@pmdsdata4:/srv/dkr/392dkr/backend392$ make myrup
-  # docker-compose  up --build  --force-recreate
-  # WARNING: Some networks were defined but are not used by any service: network3
-  # ERROR: Service "dbm" uses an undefined network "mynet3"
-  # make: *** [myrup] Error 1
+# networks:
+#   sister2:
+#     name:
+#       sister2
+#external:true
+#I tried lining up external under name and got:
+# albe@pmdsdata4:/srv/dkr/392dkr/backend392$ make myrup
+# docker-compose  up --build  --force-recreate
+# ERROR: yaml.scanner.ScannerError: while scanning a simple key
+# in "./docker-compose.yml", line 33, column 5
+# could not find expected ':'
+# in "./docker-compose.yml", line 35, column 3
+# make: *** [myrup] Error 1
+# net2:
+# external:
+# name: netw2
+# albe@pmdsdata4:/srv/dkr/392dkr/backend392$ make myrup
+# docker-compose  up --build  --force-recreate
+# WARNING: Some networks were defined but are not used by any service: net2
+# ERROR: Service "dbm" uses an undefined network "netw2"
+# make: *** [myrup] Error 1
+# network:
+# external: true
+# name: mynet3
+# albe@pmdsdata4:/srv/dkr/392dkr/backend392$ make myrup
+# docker-compose  up --build  --force-recreate
+# WARNING: Some networks were defined but are not used by any service: network3
+# ERROR: Service "dbm" uses an undefined network "mynet3"
+# make: *** [myrup] Error 1
