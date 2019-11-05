@@ -1,0 +1,25 @@
+version: "3.6"
+services:
+  sqlpad:
+    # 192.168.88.60:6153
+    image: sqlpad/sqlpad:3.2.1
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "6153:3000"
+    volumes:
+      - ../datasys/sqlpad-smpl/:/var/lib/sqlpad # folder for mysql's internal data files.
+    #
+    #   Noworky.. error 502 bad gateway.
+    # labels:
+    #   # caddy-gen info..  t.dg24.tk t.david23.tk
+    #   - "virtual.host=spad.dg24.tk"
+    #   - "virtual.port=3000"
+    #   - "virtual.tls-email=dgleba@gmail.com" # set to valid email to activate SSL
+    #   - "virtual.websockets" # enable websocket passthrough
+    # environment:
+    #   - VIRTUAL_HOST=spad-108-168-7-24.nip.io
+    #   - LETSENCRYPT_HOST=spad-108-168-7-24.nip.io
+    #   - VIRTUAL_PORT=3000
+    #   - LETSENCRYPT_EMAIL=dgleba@gmail.com
