@@ -1,0 +1,10 @@
+To: dgleba@stackpole.com
+From: dgleba@stackpole.com
+Subject:  test-494
+
+This is a test mail.
+
+There must be an empty line after Subject.
+
+albe@pmdsdata7:/srv/file/test/482dkrcollection/debian-msmtp$
+
