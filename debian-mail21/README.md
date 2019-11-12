@@ -1,4 +1,4 @@
-# simple debian to test sendmail
+# simple debian to test sending email
 
 # Instructions
 
@@ -10,6 +10,9 @@ docker-compose build
 
 ```
 
+dc=docker-compose
+
+dc up
 make m7
 
 
