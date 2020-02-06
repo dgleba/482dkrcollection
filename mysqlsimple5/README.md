@@ -1,6 +1,25 @@
-# This is - Dkr391sys
 
-This repo creates a minimal docker system of mysql backend on external network, demonstrate function using php .
+# This 
+
+https://github.com/dgleba/482dkrcollection/mysqlsimple5
+
+# Note
+
+ This readme was copied from dkr392. It hasn't been updated, but the ideas are valid.
+
+
+
+
+
+
+# -
+# -
+# -
+
+
+# This is - Dkr392
+
+This repo is a docker system of mysql backend on external network, demonstrate function using php.
 
 
 
@@ -51,6 +70,6 @@ Each docker-compose had external network defined, so this joins them all.
 
 ## This is
 
-This: https://github.com/dgleba/dkr389sys  - tbd
+This: https://github.com/dgleba/dkr392  - tbd
 
 David Gleba dgleba@gmail.com
