@@ -16,6 +16,10 @@ myflu:
 	docker-compose  -f docker-compose.yml exec dbm sh -c 'mysqladmin -u$$MYSQL_ROOT_USER -p$$MYSQL_ROOT_PASSWORD flush-hosts;'
 
 
+mkd:
+	 docker-compose exec db /bin/bash /root/mkdata.sh
+
+
 
 	
  

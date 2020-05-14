@@ -17,7 +17,7 @@ Visit adminer at http://your-ip-address:6117/    (port is specified in docker-co
 
 Login with..
 ```
-- server - dbm     (database service specified in docker-compose.yml)
+- server - dbm     (database service name specified in docker-compose.yml)
 - username - root
 - password - pw    (password is specified in .env)
 ```
