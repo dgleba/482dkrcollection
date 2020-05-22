@@ -5,7 +5,10 @@ RUN apt-get update
 
 RUN echo "postfix	postfix/mailname string debianmail21.local" | debconf-set-selections \
   && echo "postfix postfix/main_mailer_type string 'Satellite system'" | debconf-set-selections \
-  &&  apt-get -y install  postfix  mc
+  &&  apt-get -y install  postfix mailutils mc nano
+
+# I have left comments in here to record some of the things I tried.
+  
 # RUN   apt-get -y install sendmail-bin sendmail sendmail-cf m4     mailutils     mc 
 
 # no luck with.. postfix
@@ -14,7 +17,7 @@ RUN echo "postfix	postfix/mailname string debianmail21.local" | debconf-set-sele
 
 # RUN sed -i '/relayhost*/c\relayhost = MESG01.stackpole.ca' /etc/postfix/main.cf
 
-RUN sed -i '/relayhost*/c\relayhost = 10.5.1.210' /etc/postfix/main.cf
+#RUN sed -i '/relayhost*/c\relayhost = 10.5.1.210' /etc/postfix/main.cf
 
 
 # RUN line=$(head -n 1 /etc/hosts) \

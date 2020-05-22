@@ -1,4 +1,4 @@
-main.cf
+ssmtp.conf
 
 persistantData.json
 creds.py

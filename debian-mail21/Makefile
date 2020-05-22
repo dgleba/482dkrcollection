@@ -3,12 +3,13 @@
 # run scripts from project folder like this --  sc/cl
 
 m6:
-	docker-compose exec  deb /bin/bash -c ' 	echo "Test mail debian-mail08 dkr" | mail  -r dgleba@stackpole.com -s "Test mail 477"  dgleba@stackpole.com  '
+	docker-compose exec  deb /bin/bash -c ' 	echo "Test mail debian-mail08 dkr" | mail  -r dgleba@gmail.com -s "Test mail 478"  dgleba@gmail.com '
 
 
 # this wont work, but it works to send mail within make sh...  
 m7:
-	docker-compose exec   deb /bin/bash -c ' sleep 3 && echo "Subject: test 614" | /usr/sbin/sendmail dgleba@stackpole.com '
+	docker-compose exec   deb /bin/bash -c ' sleep 1 && echo "Subject: test 614" | /usr/sbin/sendmail dgleba@gmail.com '
+	
 m5:
 	docker-compose run   deb /bin/bash -c ' sleep 3 && echo "Subject: test 612" | /usr/sbin/sendmail dgleba@stackpole.com '
 
