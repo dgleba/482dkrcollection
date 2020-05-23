@@ -1,0 +1,7 @@
+I think..
+
+works from within the container using `make sh`, but not `make m5`
+
+echo "Subject: test 456" | /usr/sbin/sendmail dgleba@stackpole.com
+
+or see makefile, but I can't get those to work.
