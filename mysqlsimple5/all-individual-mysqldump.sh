@@ -46,10 +46,10 @@ main1()
   for db in $databases; do
     echo "${db}"
     
-    $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_ROOT_PASSWORD    --databases "${db}" --complete-insert --quote-names  --allow-keywords \
-       --skip-add-drop-table --add-drop-database  --skip-lock-tables  --no-tablespaces --no-create-info --routines \
+    $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_ROOT_PASSWORD    --databases "${db}" --complete-insert --quote-names   \
+       --skip-add-drop-table --add-drop-database  --skip-lock-tables   --routines \
        --events  | grep -v 'SQL SECURITY DEFINER' > "$BACKUP_DIR/"${db}"_mysqldump.sql"
-
+    # Be CAREFUL with the all options...      --no-tablespaces --no-create-info --allow-keywords
        
     # -d = structure only all tables
     $MYSQLDUMP --force --opt --user=$MYSQL_USER -p$MYSQL_ROOT_PASSWORD -d --databases "${db}" --complete-insert --quote-names  --allow-keywords \

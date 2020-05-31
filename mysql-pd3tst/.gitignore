@@ -1,7 +1,9 @@
 persistantData.json
 creds.py
 
+.mysql_history
 datasys/
+sysdata/
 data/
 x/
 certs/

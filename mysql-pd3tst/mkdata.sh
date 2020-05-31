@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-#@  
-#@  purpose: make lots of fake data quickly
-#@  
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-05-29[May-Fri]18-28PM 
-
-
-
 date ; set +vx  ; set -vx ; # echo off, then echo on
 set +vx
 echo ~----------~----------Startinga [dirname $0 basename $0] `dirname "$0"`/`basename "$0"` 
@@ -45,8 +36,6 @@ EOF
 
 #sleep 1
 
-# create table
-
 mysql --local-infile=1  -uroot -p"$MYSQL_ROOT_PASSWORD"</root/tmp.sql
 
 date
@@ -73,14 +62,11 @@ echo "USE dkrdb" >> /root/export.data1.sql
 mysqldump -uroot -p$MYSQL_ROOT_PASSWORD   dkrdb data1   --skip-add-drop-table    --where='id>=1' | sed -e "s/([0-9]*,/(NULL,/gi" \
    | sed 's/^CREATE TABLE /CREATE TABLE IF NOT EXISTS /' >> /root/export.data1.sql
 
-echo "USE dkrdb" >> /root/export.data1.sql
-mysqldump -uroot -p$MYSQL_ROOT_PASSWORD   dkrdb data1   --skip-add-drop-table    --where='id>=1' | sed -e "s/([0-9]*,/(NULL,/gi" \
-   | sed 's/^CREATE TABLE /CREATE TABLE IF NOT EXISTS /' >> /root/export.data1.sql
 
 timeout12=59 ; read -t "${timeout12}" -p "Press ENTER or wait $timeout12 seconds..." || true ;  echo ;
 
 i=0
-echo import n times..
+echo import 10 times..
     for i in {1..100} 
       do
         mysql --local-infile=1  -uroot -p"$MYSQL_ROOT_PASSWORD"</root/export.data1.sql
