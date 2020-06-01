@@ -137,34 +137,3 @@ dbarray=(
 
 
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-#@  
-#@  change all to myisam
-#@  
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-05-29[May-Fri]23-47PM 
-
-
-works. need to disable  foreign key checks.
-
-
-SELECT  CONCAT('ALTER TABLE ',TABLE_SCHEMA,'.','`', table_name, '`', ' ENGINE=MyISAM;') AS sql_statements
-FROM    information_schema.tables
-WHERE   TABLE_SCHEMA NOT IN ('mysql', 'information_schema', 'performance_schema', 'innodb', 'sys', 'tmp')
-AND     `ENGINE` = 'InnoDB'
-AND     `TABLE_TYPE` = 'BASE TABLE'
-ORDER BY TABLE_SCHEMA, table_name DESC;
-
-
-2.
-
-SELECT  CONCAT('ALTER TABLE ',TABLE_SCHEMA,'.', table_name, ' ENGINE=InnoDB;') AS sql_statements
-FROM    information_schema.tables
-WHERE   TABLE_SCHEMA NOT IN ('mysql', 'information_schema', 'performance_schema', 'innodb', 'sys', 'tmp')
-AND     `ENGINE` = 'MyISAM'
-AND     `TABLE_TYPE` = 'BASE TABLE'
-ORDER BY TABLE_SCHEMA, table_name DESC;
-
-
-
-
-

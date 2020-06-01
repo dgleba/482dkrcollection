@@ -296,3 +296,99 @@ albe@pmdsdata4:~$
 ./in-out/pmdsdata3-prodrptdb-regulr-mysql.sql
 ./in-out/pmdsdata3-test2-regulr-mysql.sql
  
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  change all to myisam  - loose foreign keys
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-05-29[May-Fri]23-47PM 
+
+
+ALTER TABLE cilist.`users_rr` ENGINE=MyISAM
+Error in query (1217): Cannot delete or update a parent row: a foreign key constraint fails
+
+
+may have to remove all FOREIGN KEYs
+
+
+
+SET FOREIGN_KEY_CHECKS=0;
+
+SELECT  CONCAT('SET FOREIGN_KEY_CHECKS=0; ALTER TABLE ',TABLE_SCHEMA,'.','`', table_name, '`', ' ENGINE=MyISAM;') AS sql_statements
+FROM    information_schema.tables
+WHERE   TABLE_SCHEMA NOT IN ( 'tmp')
+AND     `ENGINE` = 'InnoDB'
+AND     `TABLE_TYPE` = 'BASE TABLE'
+ORDER BY TABLE_SCHEMA, table_name DESC;
+
+
+SET FOREIGN_KEY_CHECKS=1;
+
+
+
+2.
+
+SELECT  CONCAT('ALTER TABLE ',TABLE_SCHEMA,'.', table_name, ' ENGINE=InnoDB;') AS sql_statements
+FROM    information_schema.tables
+WHERE   TABLE_SCHEMA NOT IN ('mysql', 'information_schema', 'performance_schema', 'innodb', 'sys', 'tmp')
+AND     `ENGINE` = 'MyISAM'
+AND     `TABLE_TYPE` = 'BASE TABLE'
+ORDER BY TABLE_SCHEMA, table_name DESC;
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-05-31[May-Sun]14-28PM 
+
+
+
+ 
+ #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ #@  
+ #@  https://vdachev.net/2007/02/22/mysql-reducing-ibdata1/
+ #@  
+ #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-05-31[May-Sun]14-27PM 
+
+
+ Dump the Whole Database
+In fact, this is the method I used to solve the problem. It requires much more space and time but it’s maybe the easiest one. So here it is:
+
+Dump all databases by calling:
+1
+mysqldump --extended-insert --all-databases --add-drop-database --disable-keys --flush-privileges --quick --routines --triggers > 'all-databases.sql'
+
+Stop the MySQL server;
+
+Rename or remove (in case you’ve already backed it up) the MySQL data directory and create an empty one with the same name and permissions;
+
+Add the innodb_file_per_table option to your my.cnf;
+
+Re-initialize the database with the following command (replace the ‘mysqld‘ with the login of the user your MySQL server runs as) (10x, Påven):
+1
+sudo -u mysqld mysql_install_db
+Start the MySQL server;
+Get into the MySQL console and type:
+1
+2
+3
+SET FOREIGN_KEY_CHECKS=0;
+SOURCE 'all-databases.sql';
+SET FOREIGN_KEY_CHECKS=1;
+Restart the MySQL server. (10x, czaby)
+At this point everything should be fine and you can test it by starting again the services that use MySQL. If not…
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-05-31[May-Sun]14-29PM 
+
+

@@ -48,3 +48,11 @@ set
 set|grep hi
 exit
 exit
+whoami
+cat /etc/passed
+cat /etc/passwd
+ps -ef
+ps
+docker ps
+sudo mysql
+exit

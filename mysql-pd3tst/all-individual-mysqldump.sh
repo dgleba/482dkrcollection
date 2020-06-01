@@ -48,7 +48,7 @@ main1()
 
 
   databases=`$MYSQL --user=$MYSQL_USER -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | grep -Ev \
-   "(Database|cmmdb|greygold|prodrptdb_archive|argo|test|ignition|rail_test|mysql|information_schema|performance_schema)"`   # see exclude list to the left on this line.
+   "(cmmdb|greygold|prodrptdb_archive|argo|ignition|test|rail_test|mysql|information_schema|performance_schema|Database)"`   # see exclude list to the left on this line.
 
   #   databases="dgnote130 dkrdb rptdb qualitydb"
 

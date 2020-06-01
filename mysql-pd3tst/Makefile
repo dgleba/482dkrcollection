@@ -34,6 +34,8 @@ mp:
 sh:
 	docker-compose  run --rm dbm  bash
 
+reinit:
+	docker-compose  run --rm dbm  bash -c 'sudo mysql; bash mysql_install_db'
 	
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
