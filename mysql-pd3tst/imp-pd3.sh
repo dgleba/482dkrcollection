@@ -43,10 +43,15 @@ done
 function forarray()  
 {
 patrn=''
-# backup each database as follows..
+#  each database as follows..
+
+example_dbarray_example=( 
+/in-out/mysql_mysqldump_typ1.sql
+/in-out/mt.sql
+) 
+
 dbarray=( 
-/in-out/pmdsdata3-hrdb-regulr-mysql.2020-05-17_14.59.37.sql
-/in-out/pmdsdata3-lukup-regulr-mysql.2020-05-17_14.59.54.sql
+/in-out/mysql_mysqldump_typ1.sql
 ) 
  
 date
@@ -87,11 +92,12 @@ set -vx
 
 # usage: see makefile
 
-echo 'msg-2020-05-29_Fri_19.53-PM'
+echo 'msg-1020-05-29_Fri_19.53-PM'
 
 sleep 2
 
-forsomefiles
+forarray
+#forsomefiles
 #forfiles
 
 }

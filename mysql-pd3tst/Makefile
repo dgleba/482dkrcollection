@@ -5,7 +5,8 @@
 
 
 p:  
-	docker-compose run --rm dbm sh -c 'chmod 777 /in-out'
+	docker-compose run --rm dbm sh -c 'chmod -R 777 /in-out; chmod -R 777 /home'
+	
 	
 x:  
 	chmod +x *.sh

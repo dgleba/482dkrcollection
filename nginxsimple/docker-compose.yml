@@ -1,0 +1,26 @@
+# Main 
+version: "3.6"
+
+services:
+
+  me:
+    # 192.168.88.60:6216
+    image: nginx:1.16-alpine
+    ports:
+      - "14219:8083"
+    expose:
+      - "8083"
+    volumes:
+      - ./docker/nginx/nginxmain.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./htm:/usr/share/nginx/html
+    restart: always
+    environment:
+      - unused_VIRTUAL_HOST=me.gleba.com
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "3"
+
+  
