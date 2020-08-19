@@ -20,6 +20,8 @@ mkd:
 	 docker-compose exec db /bin/bash /root/mkdata.sh
 
 
+ash:
+	docker-compose  -f docker-compose.yml exec adminer sh
 
 	
  
