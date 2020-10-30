@@ -2,7 +2,7 @@ version: "3.6"
 services:
   deb:
     # image: python:3.7
-    hostname: debianmail21.local
+    hostname: mail544.local
     build:
       context: .
       dockerfile: ./deb.Dockerfile

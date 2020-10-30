@@ -8,7 +8,7 @@ ggl search.. docker postfix as smtp mail relay
 
 # How to send a test email.
 
-## Works from https://github.com/dgleba/472dkrcollection/tree/master/23mailsend
+## Works from https://github.com/dgleba/482dkrcollection/post-fix-relay-544-yard/postfixmailsendtest544
 
 ```
 make m7

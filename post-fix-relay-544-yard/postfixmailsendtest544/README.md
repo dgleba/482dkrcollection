@@ -1,8 +1,8 @@
 # Purpose
 
-send mail using other docker in this 472dkrcollection
+send mail using other docker in this 482dkrcollection
 
-see     sftp://192.168.88.60/srv/dkr/472dkrcollection/23relaymail
+see     sftp://192.168.88.60/srv/dkr/482dkrcollection/post...
 
 # Instructions
 
