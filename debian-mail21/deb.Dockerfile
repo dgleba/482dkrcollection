@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:9
 # noneed RUN mkdir /app
 
 RUN apt-get update 
@@ -17,7 +17,8 @@ RUN echo "postfix	postfix/mailname string debianmail21.local" | debconf-set-sele
 
 # RUN sed -i '/relayhost*/c\relayhost = MESG01.stackpole.ca' /etc/postfix/main.cf
 
-RUN sed -i '/relayhost*/c\relayhost = 10.5.1.210' /etc/postfix/main.cf
+# 2020-10-30 11:10AM
+# RUN sed -i '/relayhost*/c\relayhost = 10.5.1.210' /etc/postfix/main.cf
 
 
 # RUN line=$(head -n 1 /etc/hosts) \

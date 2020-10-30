@@ -7,6 +7,9 @@ m6:
 	
 m6b:
 	docker-compose exec  deb /bin/bash -c ' 	echo "Test mail debian-mail08 dkr" | mail  -r dgleba@gmail.com -s "Test mail 478"  dgleba@gmail.com '
+	
+m12:
+	docker-compose exec  deb /bin/bash -c ' 	echo "Test mail debian-mail08 dkr" | mail  -r davidgleba@hotmail.com -s "Test mail 478"  davidgleba@hotmail.com '
 
 
 # this wont work, but it works to send mail within make sh...  
