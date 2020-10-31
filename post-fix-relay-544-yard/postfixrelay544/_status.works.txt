@@ -3,3 +3,9 @@
 used  `make m7` 
     from  sftp://192.168.88.60/srv/dkr/472dkrcollection/23mailsend
 
+
+works using davidgleba@hotmail.com on digital ocean droplet. David1212@gmail.com was blocked quickly. 2020-10-30
+
+David1212@gmail.com works on laptop server always up to now 2020-10-31.
+
+
