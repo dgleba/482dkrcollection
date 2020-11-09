@@ -1,0 +1,75 @@
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  push sqlite3 adminer using 
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-10-25[Oct-Sun]11-22AM 
+
+
+2020-11-08  --  i moved the code to 482dkrcollection now.
+
+
+
+https://docs.docker.com/docker-hub/
+
+https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html
+
+
+1.
+
+Log in on https://hub.docker.com/
+Click on Create Repository.
+Choose a name (e.g. verse_gapminder) and a description for your repository and click Create.
+
+
+
+2.
+
+Log into the Docker Hub from the command line
+
+docker login --username=yourhubusername --email=youremail@company.com
+docker login --username=dgleba 
+
+
+
+albe@vamp398:~$ docker login --username=dgleba
+Password:
+WARNING! Your password will be stored unencrypted in /home/albe/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+albe@vamp398:~$
+
+
+3.
+
+I think.. just tag the working image of  for example brail484b51_adminerd
+It was built from sqlite-adminer folder.
+
+
+docker tag bb38976d03cf yourhubusername/verse_gapminder:firsttry
+
+
+docker tag cbaa6be7dbcd dgleba/adminer-sqlite:one
+
+
+6.
+
+Push your image to the repository you created
+
+docker push dgleba/adminer-sqlite
+
+
+albe@vamp398:~$ docker push dgleba/adminer-sqlite
+The push refers to repository [docker.io/dgleba/adminer-sqlite]
+c23387f8f79b: Pushed
+b91d98836811: Pushed
+5198617fac07: Mounted from library/php
+...
+767f936afb51: Mounted from library/php
+one: digest: sha256:7491ceef9781ca10bfd2937618973fb579cbe985c0555ed91248495d7cd77fed size: 2411
+albe@vamp398:~$
+
+
+
