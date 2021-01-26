@@ -45,10 +45,10 @@ services:
       - ./apprails/db/development.sqlite3:/db.sq3
       - ./adminer-sqlite:/var/www/html
     environment:
-      - ADMINER_DEFAULT_SERVER=s
+      - ADMINER_DEFAULT_SERVER=srv
       - DB_PATH=/db.sq3
-      - DB_USER=u 
-      - DB_PASS=a
+      - DB_USER=user
+      - DB_PASS=abc
       # - ADMINER_PLUGINS='tables-filter'
     # networks:
     #   - sister

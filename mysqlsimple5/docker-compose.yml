@@ -15,9 +15,10 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ../datasys/mysql${PWD}:/var/lib/mysql/  # folder for mysql's internal data files.
+      - mysqldata:/var/lib/mysql/  # folder for mysql's internal data files.
+      # - ../datasys/mysql${PWD}:/var/lib/mysql/  # folder for mysql's internal data files.
       - .:/root # folder for scripts, etc.
-      - ../data/mysqlhome${PWD}/:/home # folder for exported data, etc.
+      # - ../data/mysqlhome${PWD}/:/home # folder for exported data, etc.
     # networks:
     #   - sister2
     # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
@@ -38,6 +39,8 @@ services:
     # networks:
     #   - sister2
 
+volumes:
+  mysqldata:
 
     
 # https://docs.docker.com/compose/compose-file/#external-1
