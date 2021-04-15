@@ -14,6 +14,8 @@ This file is at:  `10.4.1.231/srv/dkr/mysql-570a-yard/README.md`
 
 mysql is running at:  `10.4.1.231`  port: `7311`
 
+   (see docker-compose.yml in case ports were changed.)
+
 see   `./mysql570b/.env` for passwords
 
 
@@ -49,12 +51,14 @@ see ./docker-compose.yml
 
 See also: `Makefile`
 
+for initial startup try `bash mysql580b/startsh`
 
-# make data
+
+
+# OLD make data
 
 `make mkd`
 
-# More
 
 
 

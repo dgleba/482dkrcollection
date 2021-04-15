@@ -3,20 +3,53 @@ Purpose:
 Mysql 8 db for production data SCADA recording on PMDSdata6
 
 
+_____________
+
+
 
 Ofelia Demo:
 
 If you create data and set the archive where clause you should see data archiving every minute.
 
-Eg: create 500 minutes of data ending now - then arhive data 490 minutes old.
+Eg: create 300 minutes of data ending now - then archive data 290 minutes old.
+
+
+_____________
 
 
 howto:
 
-Visit adminer at the address listed in the docker-compose.yml.
 
-Paste into sql command: ptarc02-makedata.sql
 
-edit ptarc.sh and ofelia config.ini
+This should run on startup now.... Paste into sql command: ptarc02-makedata.sql
+
+edit ptarc02.sh and ofelia config.ini and others listed below.
+
+for initial startup try `bash mysql580b/startsh`
+
+Visit adminer at the address listed in the docker-compose.yml to see the data.
+
+See README.md as well.
+
+
+_____________
+
+
+edit to your needs:
+
+
+
+container name:
+mysql-580-a-yard/mysql580b/ofelia/config.ini
+
+data time frame:
+mysql-580-a-yard/mysql580b/docker-entrypoint-initdb.d/ptarc02-makedata.sql
+
+achrive time frame:
+mysql-580-a-yard/mysql580b/perco/ptarc02.sh
+
+passwords:
+cp mysql-580-a-yard/mysql580b/_example.env   to  .env
+
 
 

@@ -3,7 +3,7 @@
 set -x
 
 mkdir -p /tmp/perco
-ls -la /tmp/perco
+# ls -la /tmp/perco
 
 pt-archiver --source h=192.168.88.60,P=6601,D=dkrdb,u=root,p=iof,t=mydates  \
     \
@@ -17,6 +17,9 @@ pwd
 
 tail  /tmp/perco/mydates-arch.log
 
+
+# eg:
+#
 # pt-archiver --source h=192.168.88.60,P=7411, D=dkrdb, t=data1, u=root, p=iof  \
 #   --where 'id < 3'  \
 #   --dest h=192.168.88.60,P=7411, D=dkrdb, t=data_archive1, u=root, p=iof   \
@@ -26,7 +29,4 @@ tail  /tmp/perco/mydates-arch.log
 # test:
 # select date_sub( now(), interval 280 minute)
 
-
-
-# tail -f /dev/null
 
