@@ -1,8 +1,9 @@
 
-drop table if exists mydates;
-drop table if exists mydates_archive;
 
-CREATE TABLE mydates_archive
+
+drop table if exists mydates;
+
+CREATE TABLE arc_mydates
 (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   mydate datetime,
@@ -17,17 +18,17 @@ CREATE TABLE mydates
 
 DROP PROCEDURE IF EXISTS filldates;
 DELIMITER ||
-CREATE PROCEDURE filldates(dateStart DATETIME, dateEnd DATETIME)
+CREATE PROCEDURE filldates(dateStart DATE, dateEnd DATE)
 BEGIN
   WHILE dateStart <= dateEnd DO
     INSERT INTO mydates (mydate) VALUES (dateStart);
-    SET dateStart = date_add(dateStart, INTERVAL 1 minute);
+    SET dateStart = date_add(dateStart, INTERVAL 1 DAY);
   END WHILE;
 END;
 ||
 DELIMITER ;
-CALL filldates('2021-04-15 22:00:00','2021-04-15 23:00:00');
+CALL filldates('2021-01-01','2021-04-01');
 
-select * from mydates limit 2;
+select mydates limit 2;
 
 

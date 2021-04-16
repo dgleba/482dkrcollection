@@ -1,0 +1,20 @@
+version: "3.6"
+services:
+  perco:
+    hostname: cron581perco.local
+    build:
+      context: .
+      dockerfile: ./perco/Dockerfile
+    env_file:
+      - .env    
+    entrypoint: bash /code/entrypoint.sh  
+    volumes:
+      - ./perco:/code
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "20"
+    restart: always
+

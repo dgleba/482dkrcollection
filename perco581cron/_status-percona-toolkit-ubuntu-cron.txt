@@ -1,0 +1,10 @@
+
+ok I think.
+
+
+Purpose:
+
+run percona pt-archiver using ubuntu crontab
+
+
+

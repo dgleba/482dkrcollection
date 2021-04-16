@@ -3,6 +3,30 @@ version: "3.6"
 
 services:
 
+  # Scheduler Service
+  ofelia:
+    image: mcuadros/ofelia:v0.3.4
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./ofelia/config.ini:/etc/ofelia/config.ini
+      - ./script:/script
+    depends_on:
+      - perco
+    # This says sh not found. the first run doesn't have to succeed anyway..
+    # command: sh -c "/script/wait2start.sh"
+
+  # [pt-archiver]
+  perco:
+    image: perconalab/percona-toolkit:3.2.1
+    restart: always
+    # must keep container alive so ofelia can run it periodically..
+    command: bash -c "tail -f /dev/null"
+    # command: bash -c "bash /tmp/perco/ptarc02.sh;"
+    volumes:
+      - ./perco:/tmp/perco
+    # run with user 1000 so /tmp/perco is writable. If not 1000 then it will be made with root and not writable.  
+    user: "1000:33"
+
   dbm:
     image: mysql:8.0.23
     #hostname: mysql573t
