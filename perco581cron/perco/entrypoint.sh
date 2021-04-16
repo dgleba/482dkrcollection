@@ -23,16 +23,19 @@ echo "SHELL=/bin/bash
 BASH_ENV=/root/project_env.sh
 #
 
-9 * * * * bash /code/ptarc02.sh >> /proc/1/fd/1  2>&1
+9  */2  *  *  *  bash /code/ptarc02.sh >> /proc/1/fd/1  2>&1
 
-*/5 * * * * bash /code/ptarc03.sh >> /proc/1/fd/1  2>&1
+*/1  *  *  *  *  bash /code/ptarc03.sh >> /proc/1/fd/1  2>&1
 
 #
 # This extra line makes it a valid cron" > /crontab.txt
 
 echo
-echo Starting /crontab.txt.  Rev: 5 -   $(date +"%Y.%m.%d_%H.%M.%S")
+echo Starting /crontab.txt.  Rev: 10 -   $(date +"%Y.%m.%d_%H.%M.%S")
 echo
+
+# run once at start
+# bash /code/ptarc03.sh 
 
 
 crontab /crontab.txt

@@ -26,7 +26,10 @@ BEGIN
 END;
 ||
 DELIMITER ;
-CALL filldates('2021-04-15 22:00:00','2021-04-15 23:00:00');
+
+
+CALL filldates('2021-04-16 12:00:00','2021-04-16 17:00:00');
+
 
 select * from mydates limit 2;
 

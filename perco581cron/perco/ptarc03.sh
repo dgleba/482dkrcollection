@@ -1,6 +1,6 @@
 
 echo 
-echo  Starting ptarc03.sh  Rev: 1 -  $(date +"%Y.%m.%d_%H.%M.%S")
+echo  Starting ptarc03.sh  Rev: 3 -  $(date +"%Y.%m.%d_%H.%M.%S")
 
 # pt-archiver --help
 set -x
@@ -9,7 +9,7 @@ set -x
 # ls -la /tmp/perco
 # pwd
 
-pt-archiver --config /code/ptarc03.conf
+pt-archiver --config /code/ptarc03.conf --statistics --where="mydate  <  date_sub( now(), interval 60 minute )" 
 
 
 # tail  /code/mydates-arch.log

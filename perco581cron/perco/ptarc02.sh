@@ -14,7 +14,9 @@ pt-archiver --source h=192.168.88.60,P=6601,D=dkrdb,u=root,p=iof,t=mydates  \
     \
     --dest h=192.168.88.60,P=6601,D=dkrdb,u=root,p=iof,t=mydates_archive   \
     \
-    --limit=100  --why-quit  2>&1>>/code/mydates-arch.log
+    --limit=100  --why-quit  --progress=1000 --statistics
+    
+    # 2>&1>>/code/mydates-arch.log
 
 pwd
 
