@@ -1,0 +1,141 @@
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-04-15[Apr-Thu]19-11PM 
+
+go cron
+
+https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc
+
+
+
+[job-exec "archive-by-time-1hr"]
+schedule = @every 1h
+container = mysql580b_perco_1
+no-overlap = "true"
+command = bash /tmp/perco/ptarc02.sh;
+
+
+
+I can't get this to work.. "2 1 * * * *"
+
+[job-exec "archive-by-time-2m-b"]
+schedule   = "2 1 * * * *"
+container  = "mysql580b_perco_1"
+no-overlap = "true"
+command    = "bash /tmp/perco/ptarc02.sh;"
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-04-15[Apr-Thu]20-15PM 
+
+
+
+[job-exec "archive-by-time-1m8s"]
+schedule   = "@every 1m8s"
+container  = "mysql580b_perco_1"
+no-overlap = "true"
+command    = bash /tmp/perco/ptarc02.sh;
+
+
+[job-exec "archive-by-time-4m1s"]
+schedule   = "@every 4m1s"
+container  = "mysql580b_perco_1"
+no-overlap = "true"
+command    = bash /tmp/perco/ptarc02.sh;
+
+
+[job-exec "archive-by-time-1h-4"]
+schedule   = "@every 1h"
+container  = "mysql580b_perco_1"
+no-overlap = "true"
+command    = bash /tmp/perco/ptarc01.sh;
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  change schedule
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-04-15[Apr-Thu]18-57PM 
+
+
+I stopped ofelia and removed container. It didn't get new config.ini. on restart.
+
+
+I stopped all. on starting it, it works. see below.
+
+
+
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping mysql580b_ofelia_1     ... done
+Stopping mysql580b_perco_1      ... done
+Stopping mysql580b_dbm_1        ... done
+Stopping mysql580b_phpmyadmin_1 ... done
+Stopping mysql580b_adminer_1    ... done
+albe@pmdsdata6:/srv/dkr/mysql-580-a-yard/mysql580b$ dc up
+Starting mysql580b_dbm_1        ... done
+Starting mysql580b_adminer_1    ... done
+Recreating mysql580b_perco_1    ... done
+Starting mysql580b_phpmyadmin_1 ... done
+Recreating mysql580b_ofelia_1   ... done
+Attaching to mysql580b_adminer_1, mysql580b_dbm_1, mysql580b_perco_1, mysql580b_phpmyadmin_1, mysql580b_ofelia_1
+adminer_1     | [Thu Apr 15 22:53:12 2021] PHP 7.4.15 Development Server (http://[::]:8080) started
+
+ofelia_1      | 2021-04-15T22:53:15.116Z  scheduler.go:34 ▶ NOTICE New job registered "test-archive-by-time-1hour" - "bash /tmp/perco/ptarc02.sh" - "@every 1h"
+ofelia_1      | 2021-04-15T22:53:15.123Z  scheduler.go:54 ▶ DEBUG Starting scheduler with 1 jobs
+
+dbm_1         | 2021-04-15T22:53:14.840670Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+phpmyadmin_1  | AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.4. Set the 'ServerName' directive globally to suppress this message
+dbm_1         | 2021-04-15T22:53:15.361758Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+dbm_1         | 2021-04-15T22:53:15.649696Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+
+
+=================================================
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  error  --    bash: /tmp/perco/ptarc02.sh;: No such file or directory
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-04-15[Apr-Thu]19-48PM 
+
+ans..
+remove quotes arround command..
+ 
+[job-exec "archive-by-time-1m8s"]
+schedule   = "@every 1m8s"
+container  = "mysql580b_perco_1"
+no-overlap = "true"
+command    = bash /tmp/perco/ptarc02.sh;
+
+
+
+albe@pmdsdata6:/srv/dkr/mysql-580-a-yard/mysql580b$ dc up
+Starting mysql580b_phpmyadmin_1 ... done
+Starting mysql580b_dbm_1        ... done
+Starting mysql580b_adminer_1    ... done
+Recreating mysql580b_perco_1    ... done
+Recreating mysql580b_ofelia_1   ... done
+Attaching to mysql580b_phpmyadmin_1, mysql580b_dbm_1, mysql580b_perco_1, mysql580b_adminer_1, mysql580b_ofelia_1
+adminer_1     | [Thu Apr 15 23:45:07 2021] PHP 7.4.15 Development Server (http://[::]:8080) started
+ofelia_1      | 2021-04-15T23:45:08.353Z  scheduler.go:34 ▶ NOTICE New job registered "archive-by-time-2m-c" - "bash /tmp/perco/ptarc02.sh;" - "@every 2m"
+ofelia_1      | 2021-04-15T23:45:08.355Z  scheduler.go:54 ▶ DEBUG Starting scheduler with 1 jobs
+phpmyadmin_1  | AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.22.0.2. Set the 'ServerName' directive globally to suppress this message
+ofelia_1      | 2021-04-15T23:47:08.005Z  common.go:125 ▶ NOTICE [Job "archive-by-time-2m-c" (220b42b93b33)] Started - bash /tmp/perco/ptarc02.sh;
+ofelia_1      | 2021-04-15T23:47:08.349Z  common.go:121 ▶ ERROR [Job "archive-by-time-2m-c" (220b42b93b33)] StdErr: bash: /tmp/perco/ptarc02.sh;: No such file or directory
+ofelia_1      | 2021-04-15T23:47:08.349Z  common.go:121 ▶ ERROR [Job "archive-by-time-2m-c" (220b42b93b33)] Finished in "343.031389ms", failed: true, skipped: false, error: error non-zero exit code: 127
+
+
+
+=================================================
+
+
