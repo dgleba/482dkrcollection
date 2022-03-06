@@ -1,0 +1,8 @@
+
+docker-compose -f docker-compose-part1.yml stop
+
+s=1 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;
+
+docker-compose -f docker-compose-part2.yml stop
+
+

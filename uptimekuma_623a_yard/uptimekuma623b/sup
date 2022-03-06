@@ -1,0 +1,12 @@
+date
+docker-compose -f docker-compose-part1.yml up -d
+sleep 8
+s=60 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;
+
+docker-compose -f docker-compose-part1.yml logs -t
+date
+
+docker-compose -f docker-compose-part2.yml up -d
+date
+
+docker-compose -f docker-compose-part1.yml logs -tf
