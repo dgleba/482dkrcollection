@@ -44,14 +44,26 @@ albe@vamp398:~$
 
 3.
 
-I think.. just tag the working image of  for example brail484b51_adminerd
+I think.. just tag the working image of  for example brail484b51_adminerd.
+Get the IMAGE ID from docker images.
 It was built from sqlite-adminer folder.
 
 
 docker tag bb38976d03cf yourhubusername/verse_gapminder:firsttry
 
 
-docker tag cbaa6be7dbcd dgleba/adminer-sqlite:one
++ docker images
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+adminer-sqlite-yard_adminerd   latest              2f44c71ff0c7        5 minutes ago       57.2MB
+
+
+# May not need to do latest, it may be done automatically.
+#docker tag 2f44c71ff0c7 dgleba/adminer-sqlite:latest
+#docker push dgleba/adminer-sqlite
+
+docker tag 2f44c71ff0c7 dgleba/adminer-sqlite:2
+docker push dgleba/adminer-sqlite
+
 
 
 6.
